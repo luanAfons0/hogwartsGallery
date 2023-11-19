@@ -61,7 +61,6 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 export default ({setSearch , getByHouse , getAllCharacters}) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
-  const [house,setHouse] = useState('')
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -184,27 +183,16 @@ export default ({setSearch , getByHouse , getAllCharacters}) => {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }} spacing={2}>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' }}} onClick={()=>{
-                  setHouse('Gryffindor')
-                  getByHouse(house)
-                }}>Gryffindor</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' }}} onClick={()=>getByHouse('Gryffindor')}>Gryffindor</Button>
               </Box>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={()=>{
-                  setHouse('Slytherin')
-                  getByHouse(house)
-                }}> Slytherin</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={()=>getByHouse('Slytherin')}> Slytherin</Button>
               </Box>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={()=>{
-                  setHouse('Ravenclaw')
-                  getByHouse(house)
-                }}> Ravenclaw</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={()=>getByHouse('Ravenclaw')}> Ravenclaw</Button>
               </Box>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={()=>{
-                  setHouse('Hufflepuff')
-                  getByHouse(house)
+                <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={()=>{getByHouse('Hufflepuff')
                 }}> Hufflepuff</Button>
               </Box>
             </Box>
