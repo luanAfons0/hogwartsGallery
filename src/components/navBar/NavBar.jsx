@@ -58,7 +58,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default ({setSearch , getByHouse , getAllCharacters}) => {
+export default ({ setSearch, getByHouse, getAllCharacters }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -122,36 +122,21 @@ export default ({setSearch , getByHouse , getAllCharacters}) => {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-          <Badge badgeContent={4} color="error">
-            <MailIcon />
-          </Badge>
-        </IconButton>
-        <p>Messages</p>
+        <Button variant="contained" sx={{ backgroundColor: '#373737', color: 'white', ":hover": { background: '#323232' } }} onClick={() => getAllCharacters()}>All characters</Button>
       </MenuItem>
       <MenuItem>
-        <IconButton
-          size="large"
-          aria-label="show 17 new notifications"
-          color="inherit"
-        >
-          <Badge badgeContent={17} color="error">
-            <NotificationsIcon />
-          </Badge>
-        </IconButton>
-        <p>Notifications</p>
+        <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' } }} onClick={() => getByHouse('Gryffindor')}>Gryffindor</Button>
       </MenuItem>
-      <MenuItem onClick={handleProfileMenuOpen}>
-        <IconButton
-          size="large"
-          aria-label="account of current user"
-          aria-controls="primary-search-account-menu"
-          aria-haspopup="true"
-          color="inherit"
-        >
-          <AccountCircle />
-        </IconButton>
-        <p>Profile</p>
+      <MenuItem>
+        <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={() => getByHouse('Slytherin')}> Slytherin</Button>
+      </MenuItem>
+      <MenuItem >
+        <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={() => getByHouse('Ravenclaw')}> Ravenclaw</Button>
+      </MenuItem>
+      <MenuItem>
+        <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={() => {
+          getByHouse('Hufflepuff')
+        }}> Hufflepuff</Button>
       </MenuItem>
     </Menu>
   );
@@ -161,17 +146,17 @@ export default ({setSearch , getByHouse , getAllCharacters}) => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Box onClick={()=>getAllCharacters()}>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ display: { xs: 'none', sm: 'block', cursor:'pointer' } }}
-            >
-              Hogwarts Gallery
-            </Typography>
+            <Box onClick={() => getAllCharacters()}>
+              <Typography
+                variant="h6"
+                noWrap
+                component="div"
+                sx={{ display: { xs: 'none', sm: 'block', cursor: 'pointer' } }}
+              >
+                Hogwarts Gallery
+              </Typography>
             </Box>
-            <Search onChange={(e)=>setSearch(e.target.value)}>
+            <Search onChange={(e) => setSearch(e.target.value)}>
               <SearchIconWrapper>
                 <SearchIcon />
               </SearchIconWrapper>
@@ -183,16 +168,17 @@ export default ({setSearch , getByHouse , getAllCharacters}) => {
             <Box sx={{ flexGrow: 1 }} />
             <Box sx={{ display: { xs: 'none', md: 'flex' } }} spacing={2}>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' }}} onClick={()=>getByHouse('Gryffindor')}>Gryffindor</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' } }} onClick={() => getByHouse('Gryffindor')}>Gryffindor</Button>
               </Box>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={()=>getByHouse('Slytherin')}> Slytherin</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={() => getByHouse('Slytherin')}> Slytherin</Button>
               </Box>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={()=>getByHouse('Ravenclaw')}> Ravenclaw</Button>
+                <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={() => getByHouse('Ravenclaw')}> Ravenclaw</Button>
               </Box>
               <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={()=>{getByHouse('Hufflepuff')
+                <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={() => {
+                  getByHouse('Hufflepuff')
                 }}> Hufflepuff</Button>
               </Box>
             </Box>
