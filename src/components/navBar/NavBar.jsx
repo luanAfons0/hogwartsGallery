@@ -6,17 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
-import Badge from '@mui/material/Badge';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import SearchIcon from '@mui/icons-material/Search';
-import AccountCircle from '@mui/icons-material/AccountCircle';
-import MailIcon from '@mui/icons-material/Mail';
-import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import Button from '@mui/material/Button';
-import { useState } from 'react';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
@@ -58,7 +52,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default ({ setSearch, getByHouse, getAllCharacters }) => {
+export default ({ setSearch, getByHouse, getAllCharacters, hiddeButton, backButton, useNavigate }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
 
@@ -146,7 +140,7 @@ export default ({ setSearch, getByHouse, getAllCharacters }) => {
       <Box sx={{ flexGrow: 1 }}>
         <AppBar position="static">
           <Toolbar>
-            <Box onClick={() => getAllCharacters()}>
+            {backButton ? <Box onClick={() => useNavigate('/')}>
               <Typography
                 variant="h6"
                 noWrap
@@ -155,45 +149,61 @@ export default ({ setSearch, getByHouse, getAllCharacters }) => {
               >
                 Hogwarts Gallery
               </Typography>
-            </Box>
-            <Search onChange={(e) => setSearch(e.target.value)}>
-              <SearchIconWrapper>
-                <SearchIcon />
-              </SearchIconWrapper>
-              <StyledInputBase
-                placeholder="Search…"
-                inputProps={{ 'aria-label': 'search' }}
-              />
-            </Search>
-            <Box sx={{ flexGrow: 1 }} />
-            <Box sx={{ display: { xs: 'none', md: 'flex' } }} spacing={2}>
-              <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' } }} onClick={() => getByHouse('Gryffindor')}>Gryffindor</Button>
-              </Box>
-              <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={() => getByHouse('Slytherin')}> Slytherin</Button>
-              </Box>
-              <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={() => getByHouse('Ravenclaw')}> Ravenclaw</Button>
-              </Box>
-              <Box sx={{ marginRight: 2 }}>
-                <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={() => {
-                  getByHouse('Hufflepuff')
-                }}> Hufflepuff</Button>
-              </Box>
-            </Box>
-            <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="show more"
-                aria-controls={mobileMenuId}
-                aria-haspopup="true"
-                onClick={handleMobileMenuOpen}
-                color="inherit"
-              >
-                <MoreIcon />
-              </IconButton>
-            </Box>
+            </Box> :
+              <Box onClick={() =>getAllCharacters()}>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="div"
+                  sx={{ display: { xs: 'none', sm: 'block', cursor: 'pointer' } }}
+                >
+                  Hogwarts Gallery
+                </Typography>
+              </Box>}
+
+
+            {hiddeButton ? null :
+              <>
+                <Search onChange={(e) => setSearch(e.target.value)}>
+                  <SearchIconWrapper>
+                    <SearchIcon />
+                  </SearchIconWrapper>
+                  <StyledInputBase
+                    placeholder="Search…"
+                    inputProps={{ 'aria-label': 'search' }}
+                  />
+                </Search>
+                <Box sx={{ flexGrow: 1 }} />
+                <Box sx={{ display: { xs: 'none', md: 'flex' } }} spacing={2}>
+                  <Box sx={{ marginRight: 2 }}>
+                    <Button variant="contained" sx={{ backgroundColor: '#d32f2f', color: 'white', ":hover": { background: '#f44336' } }} onClick={() => getByHouse('Gryffindor')}>Gryffindor</Button>
+                  </Box>
+                  <Box sx={{ marginRight: 2 }}>
+                    <Button variant="contained" sx={{ backgroundColor: '#388e3c', color: 'white', ":hover": { background: '#66bb6a' } }} onClick={() => getByHouse('Slytherin')}> Slytherin</Button>
+                  </Box>
+                  <Box sx={{ marginRight: 2 }}>
+                    <Button variant="contained" sx={{ backgroundColor: '#0288d1', color: 'white', ":hover": { background: '#29b6f6' } }} onClick={() => getByHouse('Ravenclaw')}> Ravenclaw</Button>
+                  </Box>
+                  <Box sx={{ marginRight: 2 }}>
+                    <Button variant="contained" sx={{ backgroundColor: '#ffa726', color: 'white', ":hover": { background: '#ffb74d' } }} onClick={() => {
+                      getByHouse('Hufflepuff')
+                    }}> Hufflepuff</Button>
+                  </Box>
+                </Box>
+                <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+                  <IconButton
+                    size="large"
+                    aria-label="show more"
+                    aria-controls={mobileMenuId}
+                    aria-haspopup="true"
+                    onClick={handleMobileMenuOpen}
+                    color="inherit"
+                  >
+                    <MoreIcon />
+                  </IconButton>
+                </Box>
+              </>
+            }
           </Toolbar>
         </AppBar>
         {renderMobileMenu}
