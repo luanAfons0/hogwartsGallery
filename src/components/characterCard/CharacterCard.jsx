@@ -14,7 +14,7 @@ const Item = styled(Paper)(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export default ({character , setCharacterData}) => {
+export default ({ character }) => {
     const navigate = useNavigate()
 
     const setColor = (house) => {
@@ -32,10 +32,9 @@ export default ({character , setCharacterData}) => {
 
     return (
         <Grid item xs={12} sm={6} md={4} lg={3} >
-            <Item onClick={()=>{
-                setCharacterData(character)
+            <Item onClick={() => {
                 navigate(`profile/${character.id}`)
-            }} sx={{cursor:'pointer'}}>
+            }} sx={{ cursor: 'pointer' }}>
                 <Box>
                     <Box
                         component="img"

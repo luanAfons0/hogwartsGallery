@@ -5,10 +5,9 @@ import Grid from '@mui/material/Grid';
 import axios from "axios";
 import CharacterCard from "../components/characterCard/CharacterCard";
 
-export default ({setCharacterData}) => {
+export default ({ setCharacterData }) => {
     const [characters, setCharacters] = useState([])
     const [search, setSearch] = useState('')
-
 
     useEffect(() => {
         getAllCharacters()
@@ -36,7 +35,7 @@ export default ({setCharacterData}) => {
                         })
                         .map((character) => {
                             return (
-                                <CharacterCard character={character} key={character.id} setCharacterData={setCharacterData}/>
+                                <CharacterCard character={character} key={character.id} />
                             )
                         })}
                 </Grid>
