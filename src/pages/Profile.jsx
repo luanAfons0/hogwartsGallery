@@ -1,11 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect , useState} from "react";
 import NavBar from "../components/navBar/NavBar";
 import Container from '@mui/material/Container';
-import { useNavigate, useParams } from 'react-router-dom';
-import { Typography } from "@mui/material";
 import axios from "axios";
-import Button from '@mui/material/Button';
-import { useState } from "react";
+import { useNavigate, useParams } from 'react-router-dom';
+import TableCharacter from "../components/tableCharacter/tableCharacter";
 
 export default () => {
     const { id } = useParams()
@@ -16,7 +14,7 @@ export default () => {
     }, [])
 
     const getById = (id) =>{
-        axios.get(`https://hp-api.onrender.com/api/character/${id}`).then((res)=>setCharacter(res.data)).catch((error)=>console.log(error))
+        axios.get(`https://hp-api.onrender.com/api/character/${id}`).then((res)=>setCharacter(res.data[0])).catch((error)=>console.log(error))
     }
 
     const navigate = useNavigate()
@@ -25,8 +23,7 @@ export default () => {
         <>
             <NavBar hiddeButton backButton useNavigate={navigate} />
             <Container maxWidth={'xl'}>
-                <Typography variant="h5">{id}</Typography>
-                <Button variant="text" onClick={()=>console.log(character)}>Teste </Button>
+                <TableCharacter character={character}/>
             </Container>
         </>
     )
